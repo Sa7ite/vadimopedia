@@ -6,6 +6,12 @@
   <title>Вадимопедия — Все Вадимы Мира</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 </head>
 <body>
   <!-- Шапка -->
@@ -15,6 +21,14 @@
       <p>Все Вадимы мира — за всю историю</p>
     </div>
   </header>
+
+  <!-- Навигация -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="#" class="nav-link active" onclick="showSection('home')">Главная</a>
+      <a href="#" class="nav-link" onclick="showSection('quotes')">Цитаты</a>
+    </div>
+  </nav>
 
   <!-- Герой: Вадим Школов -->
   <section class="hero">
@@ -39,7 +53,7 @@
     </div>
   </section>
 
-  <!-- Поиск и список Вадимов -->
+  <!-- Все Вадимы -->
   <section class="vadims-section">
     <div class="container">
       <h2>🔍 Все Вадимы мира</h2>
@@ -48,31 +62,7 @@
       <input type="text" id="search" placeholder="Поиск по имени, дате, стране..." onkeyup="filterVadims()">
 
       <ul id="vadim-list">
-        <li>
-          <strong>Вадим Школов</strong> — 21.04.2006, Днепр, Украина
-          <span class="tag cool">Крутой</span>
-          <span class="tag known">Известный</span>
-        </li>
-        <li>
-          <strong>Вадим Титов</strong> — 1973, Москва, Россия
-          <span class="tag">Музыкант</span>
-        </li>
-        <li>
-          <strong>Вадим Ревенко</strong> — 1985, Минск, Беларусь
-          <span class="tag">Учёный</span>
-        </li>
-        <li>
-          <strong>Вадим из племени венедов</strong> — III век, Европа
-          <span class="tag ancient">Древний</span>
-        </li>
-        <li>
-          <strong>Вадим Котик</strong> — 1999, Львов, Украина
-          <span class="tag">Художник</span>
-        </li>
-        <li>
-          <strong>Вадим-кот</strong> — 2020, Токио, Япония
-          <span class="tag funny">Вымышленный</span>
-        </li>
+        <!-- Данные загружаются из Firebase -->
       </ul>
     </div>
   </section>
@@ -93,6 +83,43 @@
         </select>
         <button type="submit">Добавить Вадима</button>
       </form>
+    </div>
+  </section>
+
+  <!-- Цитаты -->
+  <section id="quotes-section" class="quotes-section" style="display: none;">
+    <div class="container">
+      <h2>💬 Цитаты Вадимов</h2>
+      <p>Мудрость, кайф и огонь — только от настоящих Вадимов.</p>
+
+      <div class="quotes-list">
+        <blockquote>
+          «Я не просто Вадим. Я — Вадим Школов. А это уже уровень.»
+          <footer>— Вадим Школов Вадим Алексеевич</footer>
+        </blockquote>
+
+        <blockquote>
+          «Когда ты Вадим, опоздание — это не ошибка, а эффект появления.»
+          <footer>— Вадим из Уфы</footer>
+        </blockquote>
+
+        <blockquote>
+          «Если сомневаешься — скажи: "Я Вадим, я знаю".»
+          <footer>— Философия Вадимизма</footer>
+        </blockquote>
+
+        <blockquote>
+          «Вадимы не теряются. Они просто делают круг.»
+          <footer>— Неизвестный Вадим, 2025</footer>
+        </blockquote>
+
+        <blockquote>
+          «Быть Вадимом — значит быть собой, но с огоньком.»
+          <footer>— Официальная заповедь #1</footer>
+        </blockquote>
+      </div>
+
+      <button class="random-quote-btn" onclick="showRandomQuote()">🎲 Случайная цитата</button>
     </div>
   </section>
 
