@@ -1,12 +1,12 @@
 // Firebase конфигурация — ЗАМЕНИ НА СВОЙ!
 const firebaseConfig = {
-  apiKey: "AIzaSyDp8Z-XXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  apiKey: "AIzaSyBq1BglnwEogeSM9z5EvqoUkCY-zC8pHG4",
   authDomain: "vadimopedia.firebaseapp.com",
-  databaseURL: "https://vadimopedia-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "vadimopedia",
-  storageBucket: "vadimopedia.appspot.com",
-  messagingSenderId: "123456789012",
-  appId: "1:123456789012:web:abcdef1234567890"
+  storageBucket: "vadimopedia.firebasestorage.app",
+  messagingSenderId: "1039495553835",
+  appId: "1:1039495553835:web:167a83b24d608658e3db6e",
+  measurementId: "G-Q3YV9RQY0Z"
 };
 
 // Инициализация Firebase
