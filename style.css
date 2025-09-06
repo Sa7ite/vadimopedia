@@ -54,82 +54,70 @@ header p {
   text-decoration: underline;
 }
 
+/* Главная: Обложка */
 .hero {
-  padding: 60px 0;
-  background: #fff;
+  padding: 80px 0;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.hero .container {
-  display: flex;
-  gap: 40px;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .hero-content {
-  flex: 1;
-  min-width: 300px;
+  text-align: center;
+  max-width: 800px;
 }
 
-.hero-content h2 {
-  font-size: 2.5rem;
-  color: #6a11cb;
-  margin-bottom: 10px;
+.hero-stats {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  margin: 30px 0;
 }
 
-.hero-content .birth {
-  color: #2575fc;
+.stat {
+  background: white;
+  padding: 15px 20px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  text-align: center;
   font-weight: 600;
-  margin-bottom: 15px;
+}
+
+.cta-btn {
+  background: #6a11cb;
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  font-size: 1.2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+  margin-top: 20px;
+}
+
+.cta-btn:hover {
+  background: #540ca0;
+  transform: scale(1.05);
 }
 
 .hero-content blockquote {
   font-style: italic;
   background: #f0f0ff;
-  padding: 15px;
-  border-left: 4px solid #6a11cb;
-  margin: 20px 0;
-  border-radius: 8px;
-}
-
-.badges {
-  margin-top: 15px;
-}
-
-.badge {
-  display: inline-block;
-  background: #6a11cb;
-  color: white;
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  margin-right: 8px;
-  margin-bottom: 8px;
-}
-
-.hero-image img {
+  padding: 20px;
   border-radius: 15px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-  max-width: 300px;
-  width: 100%;
-  border: 5px solid #f0f0ff;
+  border-left: 5px solid #6a11cb;
+  margin: 30px auto;
+  max-width: 600px;
+  color: #6a11cb;
 }
 
-.hero-image img:hover {
-  transform: scale(1.05) rotate(1deg);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-  transition: all 0.4s ease;
-}
-
-.vadims-section, .add-section {
-  padding: 60px 0;
+/* Все Вадимы */
+.all-vadims-section {
+  padding: 80px 0;
   background: #f9f9ff;
 }
 
-.vadims-section h2, .add-section h2 {
+.all-vadims-section h2 {
   text-align: center;
   margin-bottom: 20px;
   color: #333;
@@ -152,12 +140,13 @@ header p {
 
 #vadim-list {
   list-style: none;
+  margin: 20px 0;
 }
 
 #vadim-list li {
   background: white;
-  padding: 15px;
-  margin-bottom: 10px;
+  padding: 18px;
+  margin-bottom: 12px;
   border-radius: 10px;
   border-left: 5px solid #2575fc;
   box-shadow: 0 3px 10px rgba(0,0,0,0.05);
@@ -165,60 +154,144 @@ header p {
 
 #vadim-list li strong {
   color: #444;
+  font-size: 1.1rem;
 }
 
-.tag {
+/* Теги под Вадимом */
+.tags {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.badge {
+  display: inline-block;
+  background: #6a11cb;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 20px;
   font-size: 0.8rem;
-  padding: 3px 8px;
-  border-radius: 10px;
-  margin-left: 10px;
-  background: #e0e0ff;
-  color: #555;
+  font-weight: 600;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.tag.cool { background: #ffe4b3; color: #b37700; }
-.tag.known { background: #d4edda; color: #155724; }
-.tag.ancient { background: #d1c4e9; color: #4a148c; }
-.tag.funny { background: #fff3cd; color: #856404; }
+/* Описание Вадима */
+.description {
+  margin-top: 10px;
+  font-style: italic;
+  color: #555;
+  font-size: 0.95rem;
+  padding: 8px 12px;
+  background: #f8f8ff;
+  border-radius: 8px;
+  border-left: 3px solid #6a11cb;
+}
+
+/* Форма добавления */
+.add-section-inline {
+  margin-top: 50px;
+  padding: 30px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border: 1px solid #e0e0ff;
+}
+
+.add-section-inline h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #6a11cb;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
 
 #add-vadim-form {
   display: flex;
   flex-direction: column;
-  max-width: 600px;
-  margin: 0 auto;
-  gap: 12px;
+  gap: 15px;
 }
 
 #add-vadim-form input,
-#add-vadim-form select {
-  padding: 12px;
-  font-size: 1rem;
+#add-vadim-form select,
+#add-vadim-form textarea {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 0;
   border: 2px solid #ddd;
-  border-radius: 8px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  transition: all 0.3s ease;
   outline: none;
 }
 
 #add-vadim-form input:focus,
-#add-vadim-form select:focus {
+#add-vadim-form select:focus,
+#add-vadim-form textarea:focus {
   border-color: #6a11cb;
+  box-shadow: 0 0 10px rgba(106, 17, 203, 0.2);
+}
+
+#add-vadim-form select {
+  appearance: none;
+  background: url("image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='black' viewBox='0 0 16 16'><path d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/></svg>") no-repeat right 15px center;
+  background-size: 16px;
+  padding-right: 40px;
+}
+
+#add-vadim-form textarea {
+  resize: vertical;
+  min-height: 80px;
 }
 
 #add-vadim-form button {
+  width: 100%;
   background: linear-gradient(135deg, #6a11cb, #2575fc);
   color: white;
-  padding: 15px;
   border: none;
-  border-radius: 10px;
-  font-size: 1.1rem;
+  padding: 15px;
+  font-size: 1.2rem;
+  border-radius: 15px;
   cursor: pointer;
   font-weight: 600;
-  margin-top: 10px;
+  transition: all 0.3s;
+  box-shadow: 0 5px 15px rgba(106, 17, 203, 0.3);
 }
 
 #add-vadim-form button:hover {
-  opacity: 0.9;
   transform: translateY(-2px);
-  transition: 0.3s;
+  box-shadow: 0 8px 20px rgba(106, 17, 203, 0.4);
+  opacity: 0.95;
+}
+
+/* История */
+.history-section {
+  padding: 80px 0;
+  background: #fff3cd;
+}
+
+.history-section h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.history-content {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.history-img {
+  max-width: 300px;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.history-text {
+  flex: 1;
+  min-width: 300px;
 }
 
 /* Вадимизм */
@@ -250,24 +323,14 @@ header p {
   line-height: 1.8;
 }
 
-.vadimism-list {
+.principles, .punishments {
   margin: 20px 0;
   padding-left: 30px;
 }
 
-.vadimism-list li {
+.principles li, .punishments li {
   margin-bottom: 15px;
   color: #333;
-}
-
-.levels {
-  margin: 20px 0;
-  padding-left: 20px;
-  color: #555;
-}
-
-.levels li {
-  margin-bottom: 10px;
 }
 
 .prayer {
@@ -276,10 +339,10 @@ header p {
   padding: 20px;
   border-radius: 15px;
   border-left: 5px solid #6a11cb;
-  margin: 20px 0;
-  line-height: 2;
+  margin: 30px 0;
   color: #6a11cb;
   text-align: center;
+  line-height: 2;
 }
 
 /* Популярные */
@@ -302,7 +365,7 @@ header p {
 .popular-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
+  gap: 30px;
   max-width: 1000px;
   margin: 0 auto;
 }
@@ -315,8 +378,6 @@ header p {
   text-align: center;
   cursor: pointer;
   transition: transform 0.3s;
-  max-width: 280px;
-  margin: 0 auto;
 }
 
 .card:hover {
@@ -352,16 +413,18 @@ header p {
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: fadeIn 0.3s;
 }
 
 .modal-content {
   background: white;
   padding: 30px;
   border-radius: 20px;
-  max-width: 500px;
+  max-width: 450px;
   width: 90%;
   text-align: center;
   position: relative;
+  animation: scaleIn 0.3s;
 }
 
 .close {
@@ -383,6 +446,16 @@ header p {
   margin: 20px 0;
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.9); }
+  to { transform: scale(1); }
+}
+
 footer {
   background: #333;
   color: #ccc;
@@ -401,7 +474,7 @@ footer em {
 
 @media (max-width: 768px) {
   header h1 { font-size: 2.2rem; }
-  .hero .container { flex-direction: column; text-align: center; }
-  .hero-image { order: -1; }
-  .popular-grid { grid-template-columns: 1fr; }
+  .hero { padding: 60px 0; }
+  .hero-content h2 { font-size: 2.2rem; }
+  .history-content { flex-direction: column; }
 }

@@ -1,6 +1,8 @@
+// Firebase конфигурация — твой!
 const firebaseConfig = {
   apiKey: "AIzaSyBq1BglnwEogeSM9z5EvqoUkCY-zC8pHG4",
   authDomain: "vadimopedia.firebaseapp.com",
+  databaseURL: "https://vadimopedia-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "vadimopedia",
   storageBucket: "vadimopedia.firebasestorage.app",
   messagingSenderId: "1039495553835",
@@ -8,27 +10,12 @@ const firebaseConfig = {
   measurementId: "G-Q3YV9RQY0Z"
 };
 
-// Инициализация Firebase 
+// Инициализация Firebase
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 const vadimsRef = database.ref("vadims");
 
-// Стандартные Вадимы
-const defaultVadims = [
-  { name: "Вадим Школов", dob: "21.04.2006", city: "Днепр, Украина", type: "cool", typeLabel: "Крутой" },
-  { name: "Вадим Титов", dob: "1973-05-12", city: "Москва, Россия", type: "normal", typeLabel: "Музыкант" },
-  { name: "Вадим Ревенко", dob: "1985-08-23", city: "Минск, Беларусь", type: "normal", typeLabel: "Учёный" },
-  { name: "Вадим из племени венедов", dob: "0200-01-01", city: "Европа", type: "ancient", typeLabel: "Древний" }
-];
-
-// Проверка: заполнить базу при первом запуске
-vadimsRef.once("value", (snapshot) => {
-  if (!snapshot.exists()) {
-    vadimsRef.set(defaultVadims);
-  }
-});
-
-// Отображение Вадимов
+// Отображение Вадимов с тегами и описанием
 function renderVadims(snapshot) {
   const list = document.getElementById("vadim-list");
   list.innerHTML = "";
@@ -37,9 +24,37 @@ function renderVadims(snapshot) {
   const vadims = Object.values(data);
   vadims.forEach(v => {
     const li = document.createElement("li");
+
+    // Форматируем дату
     const date = new Date(v.dob);
     const formattedDate = isNaN(date.getTime()) ? v.dob : date.toLocaleDateString("ru-RU");
-    li.innerHTML = `<strong>${v.name}</strong> — ${formattedDate}, ${v.city}`;
+
+    // Генерируем теги
+    const tags = [];
+    if (v.type === "cool") tags.push("Крутой");
+    if (v.type === "normal") tags.push("Средний");
+    if (v.type === "funny") tags.push("Странный");
+    if (v.type === "fictional") tags.push("Вымышленный");
+
+    const lowerName = v.name.toLowerCase();
+    if (lowerName.includes("школов") || lowerName.includes("shkolv")) {
+      tags.push("Известный", "Гений");
+    }
+    if (lowerName.includes("титов")) tags.push("Музыкант");
+    if (lowerName.includes("ревенко")) tags.push("Учёный");
+    if (lowerName.includes("венедск")) tags.push("Древний");
+    if (v.city) tags.push(v.city);
+
+    const tagsHTML = tags.map(tag => `<span class="badge">${tag}</span>`).join("");
+
+    // Описание
+    const descHTML = v.description ? `<div class="description">${v.description}</div>` : '';
+
+    li.innerHTML = `
+      <strong>${v.name}</strong> — ${formattedDate}<br>
+      <div class="tags">${tagsHTML}</div>
+      ${descHTML}
+    `;
     list.appendChild(li);
   });
 }
@@ -47,7 +62,7 @@ function renderVadims(snapshot) {
 // Слушаем изменения
 vadimsRef.on("value", renderVadims);
 
-// Поиск (работает в реальном времени)
+// Поиск
 function filterVadims() {
   const input = document.getElementById("search");
   const filter = input.value.toLowerCase();
@@ -58,79 +73,110 @@ function filterVadims() {
   });
 }
 
-// Добавление Вадима
+// Добавление / обновление Вадима
 function addVadim(event) {
   event.preventDefault();
+
   const name = document.getElementById("name").value.trim();
   const dob = document.getElementById("dob").value;
   const city = document.getElementById("city").value.trim();
   const type = document.getElementById("type").value;
+  const description = document.getElementById("description").value.trim();
 
-  // Защита: нельзя добавить Вадима Шкова повторно
-  const lowerName = name.toLowerCase();
-  if ((lowerName.includes("школов") || lowerName.includes("shkolv")) && dob === "2006-04-21") {
-    alert('⚠️ Вадим Школов уже в базе. Добавление запрещено.');
+  if (!name || !dob || !city) {
+    alert("⚠️ Заполните обязательные поля");
     return;
   }
 
-  let typeLabel = "Нормальный";
-  if (type === "cool") typeLabel = "Крутой";
-  else if (type === "funny") typeLabel = "Странный";
-  else if (type === "fictional") typeLabel = "Вымышленный";
+  // Сначала ищем, есть ли уже такой Вадим
+  vadimsRef.orderByChild("name").equalTo(name).once("value", (snapshot) => {
+    if (snapshot.exists()) {
+      // Нашли — обновляем (даже если это Вадим Школов)
+      const key = Object.keys(snapshot.val())[0];
+      vadimsRef.child(key).update({
+        dob, city, type, 
+        typeLabel: type === "cool" ? "Крутой" : 
+                  type === "funny" ? "Странный" : 
+                  type === "fictional" ? "Вымышленный" : "Средний",
+        description
+      }).then(() => {
+        alert(`✅ Обновлено: ${name}`);
+        document.getElementById("add-vadim-form").reset();
+      }).catch(err => {
+        alert("❌ Ошибка при обновлении: " + err.message);
+      });
+    } else {
+      // Нет в базе — проверяем, не пытаемся ли добавить Вадима Шкова
+      const lowerName = name.toLowerCase();
+      if ((lowerName.includes("школов") || lowerName.includes("shkolv")) && dob === "2006-04-21") {
+        alert('⚠️ Новый Вадим Школов не может быть добавлен — он уже в базе. Но можно обновить его через форму.');
+        return;
+      }
 
-  const newVadim = { name, dob, city, type, typeLabel };
-
-  vadimsRef.push(newVadim)
-    .then(() => {
-      document.getElementById("add-vadim-form").reset();
-      alert(`✅ Вадим "${name}" добавлен в базу!`);
-    })
-    .catch(err => {
-      alert("Ошибка: " + err.message);
-    });
+      // Добавляем нового Вадима
+      vadimsRef.push({
+        name, dob, city, type,
+        typeLabel: type === "cool" ? "Крутой" : 
+                  type === "funny" ? "Странный" : 
+                  type === "fictional" ? "Вымышленный" : "Средний",
+        description
+      }).then(() => {
+        alert(`✅ Добавлен: ${name}`);
+        document.getElementById("add-vadim-form").reset();
+      }).catch(err => {
+        alert("❌ Ошибка при добавлении: " + err.message);
+      });
+    }
+  });
 }
 
 // Переключение вкладок
 function showSection(section) {
-  document.getElementById("vadimism-section").style.display = "none";
-  document.getElementById("popular-section").style.display = "none";
-  document.querySelector(".hero").style.display = "none";
-  document.querySelector(".vadims-section").style.display = "none";
-  document.querySelector(".add-section").style.display = "none";
+  const sections = ['all-vadims', 'history', 'vadimism', 'popular'];
+  sections.forEach(sec => {
+    const el = document.getElementById(`${sec}-section`);
+    if (el) el.style.display = 'none';
+  });
 
-  if (section === "home") {
-    document.querySelector(".hero").style.display = "flex";
-    document.querySelector(".vadims-section").style.display = "block";
-    document.querySelector(".add-section").style.display = "block";
+  if (section !== 'home') {
+    document.querySelector('.hero').style.display = 'none';
   } else {
-    document.getElementById(section + "-section").style.display = "block";
+    document.querySelector('.hero').style.display = 'flex';
   }
 
-  document.querySelectorAll(".nav-link").forEach(link => link.classList.remove("active"));
-  document.querySelector(`[onclick="showSection('${section}')"]`).classList.add("active");
+  const target = document.getElementById(`${section}-section`);
+  if (target) {
+    target.style.display = 'block';
+  }
+
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.classList.remove('active');
+  });
+  const activeLink = document.querySelector(`[onclick="showSection('${section}')"]`);
+  if (activeLink) activeLink.classList.add('active');
 }
 
 // Популярные Вадимы
 const details = {
   shkolv: {
     title: "Вадим Школов Вадим Алексеевич",
-    img: "vadim-shkolv.jpg",
+    img: "img/vadim-shkolv.jpg",
     text: "Основатель Вадимопедии, гений, философ. Родился 21.04.2006 в Днепре. Создал учение Вадимизма. Его слово — закон."
   },
   titov: {
     title: "Вадим Титов",
-    img: "https://via.placeholder.com/150?text=Вадим+Титов",
+    img: "img/vadim-titov.jpg",
     text: "Известный российский музыкант. Участник группы 'На-На'. Символ стиля и харизмы."
   },
   revchenko: {
     title: "Вадим Ревенко",
-    img: "https://via.placeholder.com/150?text=Вадим+Ревенко",
+    img: "img/vadim-revchenko.jpg",
     text: "Учёный-физик из Беларуси. Автор работ по квантовой механике. Постоянный участник международных конференций."
   },
   ancient: {
     title: "Вадим Венедский",
-    img: "https://via.placeholder.com/150?text=Древний+Вадим",
-    text: "Легендарный вождь венедов III века. Согласно летописям, восстал против тирании. Первый известный носитель имени 'Вадим'."
+    img: "img/vadim-ancient.jpg",
+    text: "Легендарный вождь венедов III века. Восстал против тирании. Первый известный носитель имени 'Вадим'."
   }
 };
 
@@ -144,6 +190,12 @@ function showDetail(id) {
 
 function closeDetail() {
   document.getElementById("detail-modal").style.display = "none";
+}
+
+function closeDetailIfClickOnOverlay(event) {
+  if (event.target === document.getElementById("detail-modal")) {
+    closeDetail();
+  }
 }
 
 // Загрузка
