@@ -1,4 +1,3 @@
-// Firebase конфигурация — ЗАМЕНИ НА СВОЙ!
 const firebaseConfig = {
   apiKey: "AIzaSyBq1BglnwEogeSM9z5EvqoUkCY-zC8pHG4",
   authDomain: "vadimopedia.firebaseapp.com",
@@ -9,7 +8,7 @@ const firebaseConfig = {
   measurementId: "G-Q3YV9RQY0Z"
 };
 
-// Инициализация Firebase
+// Инициализация Firebase 
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 const vadimsRef = database.ref("vadims");
