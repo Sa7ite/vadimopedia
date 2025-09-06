@@ -114,6 +114,7 @@ header p {
   border-radius: 15px;
   box-shadow: 0 10px 20px rgba(0,0,0,0.1);
   max-width: 300px;
+  width: 100%;
   border: 5px solid #f0f0ff;
 }
 
@@ -220,80 +221,6 @@ header p {
   transition: 0.3s;
 }
 
-/* Цитаты */
-.quotes-section {
-  padding: 80px 0;
-  background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
-  font-family: 'Georgia', serif;
-}
-
-.quotes-section h2 {
-  text-align: center;
-  font-size: 2.5rem;
-  color: #2c3e50;
-  margin-bottom: 10px;
-  font-weight: 700;
-}
-
-.quotes-section p {
-  text-align: center;
-  color: #7f8c8d;
-  font-style: italic;
-  margin-bottom: 50px;
-}
-
-.quotes-list {
-  max-width: 800px;
-  margin: 0 auto;
-  display: grid;
-  gap: 25px;
-  grid-template-columns: 1fr;
-}
-
-.quotes-list blockquote {
-  background: white;
-  padding: 30px 40px;
-  border-radius: 18px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-  border-left: 6px solid #6a11cb;
-  font-size: 1.2rem;
-  line-height: 1.8;
-  position: relative;
-  transition: transform 0.3s ease;
-}
-
-.quotes-list blockquote:hover {
-  transform: translateY(-5px);
-}
-
-.quotes-list footer {
-  font-size: 1.1rem;
-  color: #6a11cb;
-  margin-top: 15px;
-  font-weight: 600;
-  text-align: right;
-}
-
-.random-quote-btn {
-  display: block;
-  margin: 50px auto 0;
-  padding: 14px 30px;
-  background: #6a11cb;
-  color: white;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  font-size: 1.1rem;
-  font-weight: 600;
-  box-shadow: 0 5px 15px rgba(106, 17, 203, 0.3);
-  transition: all 0.3s;
-}
-
-.random-quote-btn:hover {
-  background: #540ca0;
-  transform: scale(1.05);
-}
-
 /* Вадимизм */
 .vadimism-section {
   padding: 80px 0;
@@ -333,25 +260,26 @@ header p {
   color: #333;
 }
 
-.laws {
+.levels {
   margin: 20px 0;
   padding-left: 20px;
   color: #555;
 }
 
-.laws li {
+.levels li {
   margin-bottom: 10px;
 }
 
-.wisdom {
+.prayer {
   font-style: italic;
-  text-align: center;
-  font-size: 1.3rem;
-  color: #6a11cb;
-  margin: 40px 0;
+  background: #f0f0ff;
   padding: 20px;
-  border: 2px dashed #6a11cb;
   border-radius: 15px;
+  border-left: 5px solid #6a11cb;
+  margin: 20px 0;
+  line-height: 2;
+  color: #6a11cb;
+  text-align: center;
 }
 
 /* Популярные */
@@ -374,7 +302,7 @@ header p {
 .popular-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
+  gap: 20px;
   max-width: 1000px;
   margin: 0 auto;
 }
@@ -387,6 +315,8 @@ header p {
   text-align: center;
   cursor: pointer;
   transition: transform 0.3s;
+  max-width: 280px;
+  margin: 0 auto;
 }
 
 .card:hover {
@@ -453,40 +383,6 @@ header p {
   margin: 20px 0;
 }
 
-/* Мемы */
-.memes-section {
-  padding: 80px 0;
-  background: #fff8e1;
-}
-
-.memes-section h2 {
-  text-align: center;
-}
-
-.meme-container {
-  text-align: center;
-  margin: 30px 0;
-}
-
-#meme-img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 15px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-
-.random-meme-btn {
-  display: block;
-  margin: 30px auto;
-  padding: 12px 25px;
-  background: #ff8f00;
-  color: white;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  font-weight: 600;
-}
-
 footer {
   background: #333;
   color: #ccc;
@@ -507,4 +403,5 @@ footer em {
   header h1 { font-size: 2.2rem; }
   .hero .container { flex-direction: column; text-align: center; }
   .hero-image { order: -1; }
+  .popular-grid { grid-template-columns: 1fr; }
 }
