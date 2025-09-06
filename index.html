@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Вадимопедия — Все Вадимы Мира</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Шапка -->
+  <header>
+    <div class="container">
+      <h1>🌍 Вадимопедия</h1>
+      <p>Все Вадимы мира — за всю историю</p>
+    </div>
+  </header>
+
+  <!-- Герой: Вадим Школов -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h2>🌟 Вадим Школов Вадим Алексеевич</h2>
+        <p class="birth">📅 21 апреля 2006 года</p>
+        <p>Гений, основатель Вадимопедии, философ, легенда. Родился в день Земли — символ гармонии, силы и вдохновения.</p>
+        <blockquote>
+          «Я не просто Вадим. Я — Вадим Школов. А это уже уровень.»
+        </blockquote>
+        <div class="badges">
+          <span class="badge">Крутой</span>
+          <span class="badge">Известный</span>
+          <span class="badge">Гений</span>
+          <span class="badge">Днепр, Украина</span>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="vadim-shkolv.jpg" alt="Вадим Школов">
+      </div>
+    </div>
+  </section>
+
+  <!-- Поиск и список Вадимов -->
+  <section class="vadims-section">
+    <div class="container">
+      <h2>🔍 Все Вадимы мира</h2>
+      <p>От древних до будущих — каждый Вадим важен.</p>
+
+      <input type="text" id="search" placeholder="Поиск по имени, дате, стране..." onkeyup="filterVadims()">
+
+      <ul id="vadim-list">
+        <li>
+          <strong>Вадим Школов</strong> — 21.04.2006, Днепр, Украина
+          <span class="tag cool">Крутой</span>
+          <span class="tag known">Известный</span>
+        </li>
+        <li>
+          <strong>Вадим Титов</strong> — 1973, Москва, Россия
+          <span class="tag">Музыкант</span>
+        </li>
+        <li>
+          <strong>Вадим Ревенко</strong> — 1985, Минск, Беларусь
+          <span class="tag">Учёный</span>
+        </li>
+        <li>
+          <strong>Вадим из племени венедов</strong> — III век, Европа
+          <span class="tag ancient">Древний</span>
+        </li>
+        <li>
+          <strong>Вадим Котик</strong> — 1999, Львов, Украина
+          <span class="tag">Художник</span>
+        </li>
+        <li>
+          <strong>Вадим-кот</strong> — 2020, Токио, Япония
+          <span class="tag funny">Вымышленный</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Добавить Вадима -->
+  <section class="add-section">
+    <div class="container">
+      <h2>➕ Добавить Вадима</h2>
+      <form id="add-vadim-form" onsubmit="addVadim(event)">
+        <input type="text" id="name" placeholder="Имя и фамилия" required />
+        <input type="date" id="dob" required />
+        <input type="text" id="city" placeholder="Город" required />
+        <select id="type">
+          <option value="cool">Крутой</option>
+          <option value="normal">Средний</option>
+          <option value="funny">Странный</option>
+          <option value="fictional">Вымышленный</option>
+        </select>
+        <button type="submit">Добавить Вадима</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Подвал -->
+  <footer>
+    <div class="container">
+      <p>© 2025 Вадимопедия. Все Вадимы принадлежат себе.</p>
+      <p>Посвящается Вадиму Шкову Вадиму Алексеевичу (21.04.2006)</p>
+      <p>Вадимизм: <em>«Быть Вадимом — значит быть собой, но с огоньком»</em></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
