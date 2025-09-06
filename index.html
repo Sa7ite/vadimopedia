@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Вадимопедия — Все Вадимы Мира</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Georgia&display=swap" rel="stylesheet">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
@@ -27,6 +27,9 @@
     <div class="container">
       <a href="#" class="nav-link active" onclick="showSection('home')">Главная</a>
       <a href="#" class="nav-link" onclick="showSection('quotes')">Цитаты</a>
+      <a href="#" class="nav-link" onclick="showSection('vadimism')">Вадимизм</a>
+      <a href="#" class="nav-link" onclick="showSection('popular')">Популярные</a>
+      <a href="#" class="nav-link" onclick="showSection('memes')">Мемы</a>
     </div>
   </nav>
 
@@ -97,22 +100,18 @@
           «Я не просто Вадим. Я — Вадим Школов. А это уже уровень.»
           <footer>— Вадим Школов Вадим Алексеевич</footer>
         </blockquote>
-
         <blockquote>
           «Когда ты Вадим, опоздание — это не ошибка, а эффект появления.»
           <footer>— Вадим из Уфы</footer>
         </blockquote>
-
         <blockquote>
           «Если сомневаешься — скажи: "Я Вадим, я знаю".»
           <footer>— Философия Вадимизма</footer>
         </blockquote>
-
         <blockquote>
           «Вадимы не теряются. Они просто делают круг.»
           <footer>— Неизвестный Вадим, 2025</footer>
         </blockquote>
-
         <blockquote>
           «Быть Вадимом — значит быть собой, но с огоньком.»
           <footer>— Официальная заповедь #1</footer>
@@ -120,6 +119,99 @@
       </div>
 
       <button class="random-quote-btn" onclick="showRandomQuote()">🎲 Случайная цитата</button>
+    </div>
+  </section>
+
+  <!-- Вадимизм -->
+  <section id="vadimism-section" class="vadimism-section" style="display: none;">
+    <div class="container">
+      <h2>🏛️ Философия Вадимизма</h2>
+      <p>Учение о жизни, силе и статусе. Основано на словах и деяниях Вадима Шкова Вадима Алексеевича.</p>
+
+      <div class="vadimism-content">
+        <h3>🔹 Что такое Вадимизм?</h3>
+        <p>Вадимизм — это не религия, не секта, а <strong>состояние души</strong>. Когда ты Вадим — ты не следуешь правилам. Ты <em>становишься законом</em>.</p>
+
+        <h3>📜 10 Постулатов Вадимизма</h3>
+        <ol class="vadimism-list">
+          <li><strong>Не бойся быть Вадимом.</strong> Даже если все зовут Эдуард — ты знаешь правду.</li>
+          <li><strong>Если сомневаешься — скажи: "Я Вадим, я знаю".</strong> Этого достаточно.</li>
+          <li><strong>Опоздание — не провал, а эффект появления.</strong> Ты пришёл — значит, время началось.</li>
+          <li><strong>Носи хотя бы одну странную вещь.</strong> Носки разного цвета, часы на ноге — это твой знак.</li>
+          <li><strong>Ты не опаздываешь. Ты приходишь как Вадим — с огоньком.</strong></li>
+          <li><strong>Не объясняй, зачем ты это сделал.</strong> Ты Вадим. Этого достаточно.</li>
+          <li><strong>Если тебя не поняли — значит, они не Вадимы.</strong> Их мнение не имеет веса.</li>
+          <li><strong>Каждый день — день Вадима.</strong> Но 21 апреля — особенный (день рождения Вадима Шкова).</li>
+          <li><strong>Вадим не ищет одобрения.</strong> Он его создаёт.</li>
+          <li><strong>Быть Вадимом — значит быть собой, но с огоньком.</strong></li>
+        </ol>
+
+        <h3>⚡ Законы бытия</h3>
+        <ul class="laws">
+          <li>Вселенная подстраивается под Вадима.</li>
+          <li>Случайности — это знаки от Вадима.</li>
+          <li>Если имя — Вадим, значит, судьба — велика.</li>
+        </ul>
+
+        <blockquote class="wisdom">
+          «Я не просто Вадим. Я — Вадим Школов. А это уже уровень.»
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- Популярные Вадимы -->
+  <section id="popular-section" class="popular-section" style="display: none;">
+    <div class="container">
+      <h2>🔥 Самые Популярные Вадимы</h2>
+      <p>Те, кого ищут чаще всего. Кликни по карточке — узнай больше.</p>
+
+      <div class="popular-grid">
+        <div class="card" onclick="showDetail('shkolv')">
+          <img src="vadim-shkolv.jpg" alt="Вадим Школов">
+          <h3>Вадим Школов</h3>
+          <p>Гений, основатель</p>
+        </div>
+        <div class="card" onclick="showDetail('titov')">
+          <img src="https://via.placeholder.com/150?text=Вадим+Титов" alt="Вадим Титов">
+          <h3>Вадим Титов</h3>
+          <p>Музыкант, Россия</p>
+        </div>
+        <div class="card" onclick="showDetail('revchenko')">
+          <img src="https://via.placeholder.com/150?text=Вадим+Ревенко" alt="Вадим Ревенко">
+          <h3>Вадим Ревенко</h3>
+          <p>Учёный, Беларусь</p>
+        </div>
+        <div class="card" onclick="showDetail('ancient')">
+          <img src="https://via.placeholder.com/150?text=Древний+Вадим" alt="Древний Вадим">
+          <h3>Вадим Венедский</h3>
+          <p>Легенда III века</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Детали Вадима -->
+  <div id="detail-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <span class="close" onclick="closeDetail()">&times;</span>
+      <h2 id="detail-title">Детали</h2>
+      <img id="detail-img" src="" alt="">
+      <p id="detail-text">Информация</p>
+    </div>
+  </div>
+
+  <!-- Мемы -->
+  <section id="memes-section" class="memes-section" style="display: none;">
+    <div class="container">
+      <h2>😂 Мемы Вадимов</h2>
+      <p>Смех — это тоже форма уважения к Вадиму.</p>
+
+      <div class="meme-container">
+        <img id="meme-img" src="https://i.imgflip.com/7q5c36.jpg" alt="Мем про Вадима">
+      </div>
+
+      <button class="random-meme-btn" onclick="showRandomMeme()">🎲 Следующий мем</button>
     </div>
   </section>
 
